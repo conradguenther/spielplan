@@ -13,7 +13,7 @@ import { Divider } from '@mui/material'
 export default function Overview() {
   const [teams, setTeams] = useState([])
   const [newTeam, setNewTeam] = useState({
-    id: 0,
+    id: 1,
     teamName: '',
     player1: '',
     player2: '',
@@ -25,11 +25,25 @@ export default function Overview() {
     player8: '',
     points: 0,
   })
-  const [numberOfTeams, setNumberOfTeams] = useState(0)
+  const [numberOfTeams, setNumberOfTeams] = useState(1)
 
   const addTeam = () => {
     console.log("klick")
     setTeams([...teams, newTeam])
+    setNumberOfTeams(numberOfTeams + 1)
+    setNewTeam({
+      id: numberOfTeams + 1,
+      teamName: '',
+      player1: '',
+      player2: '',
+      player3: '',
+      player4: '',
+      player5: '',
+      player6: '',
+      player7: '',
+      player8: '',
+      points: 0,
+    })
     console.log(teams)
   }
 
@@ -46,7 +60,7 @@ export default function Overview() {
                 Neues Team:
                 <TextField
                   fullWidth={true}
-                  size = "small"
+                  size="small"
                   label="Teamname"
                   onChange={(event) =>
                     setNewTeam((newTeam) => ({
@@ -59,7 +73,7 @@ export default function Overview() {
                 <Divider />
                 <TextField
                   fullWidth={true}
-                  size = "small"
+                  size="small"
                   label="Spieler 1"
                   onChange={(event) =>
                     setNewTeam((newTeam) => ({
@@ -71,7 +85,7 @@ export default function Overview() {
                 />
                 <TextField
                   fullWidth={true}
-                  size = "small"
+                  size="small"
                   label="Spieler 2"
                   onChange={(event) =>
                     setNewTeam((newTeam) => ({
@@ -83,7 +97,7 @@ export default function Overview() {
                 />
                 <TextField
                   fullWidth={true}
-                  size = "small"
+                  size="small"
                   label="Spieler 3"
                   onChange={(event) =>
                     setNewTeam((newTeam) => ({
@@ -95,7 +109,7 @@ export default function Overview() {
                 />
                 <TextField
                   fullWidth={true}
-                  size = "small"
+                  size="small"
                   label="Spieler 4"
                   onChange={(event) =>
                     setNewTeam((newTeam) => ({
@@ -107,7 +121,7 @@ export default function Overview() {
                 />
                 <TextField
                   fullWidth={true}
-                  size = "small"
+                  size="small"
                   label="Spieler 5"
                   onChange={(event) =>
                     setNewTeam((newTeam) => ({
@@ -119,7 +133,7 @@ export default function Overview() {
                 />
                 <TextField
                   fullWidth={true}
-                  size = "small"
+                  size="small"
                   label="Spieler 6"
                   onChange={(event) =>
                     setNewTeam((newTeam) => ({
@@ -131,7 +145,7 @@ export default function Overview() {
                 />
                 <TextField
                   fullWidth={true}
-                  size = "small"
+                  size="small"
                   label="Spieler 7"
                   onChange={(event) =>
                     setNewTeam((newTeam) => ({
@@ -143,7 +157,7 @@ export default function Overview() {
                 />
                 <TextField
                   fullWidth={true}
-                  size = "small"
+                  size="small"
                   label="Spieler 8"
                   onChange={(event) =>
                     setNewTeam((newTeam) => ({
@@ -163,7 +177,7 @@ export default function Overview() {
         {teams.map((team) => {
           return (
             <Grid item xs={4}>
-              {team.name}
+              {team.teamName}
             </Grid>
           )
         })}
