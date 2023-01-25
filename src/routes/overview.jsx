@@ -10,6 +10,7 @@ import Grid from "@mui/material/Grid"
 import { useState } from "react"
 
 import Teamcard from '../components/teamcard'
+import { Typography } from '@mui/material'
 
 
 export default function Overview() {
@@ -50,12 +51,9 @@ export default function Overview() {
 
   return (
     <>
-      <h1>
-        Das ist die Übersichtsseite
-      </h1>
       <Grid container spacing={1}>
         <Grid item xs={3}>
-          <Card>
+          <Card sx={{ backgroundColor: '#E0E3DDbb' }}>
             <CardContent>
               <Stack direction="column" rowGap={1}>
                 <TextField
@@ -71,113 +69,144 @@ export default function Overview() {
                   value={newTeam.teamName ?? ''}
                 />
                 <Divider />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 1"
-                  onChange={(event) =>
-                    setNewTeam((newTeam) => ({
-                      ...newTeam,
-                      player1: event.target.value,
-                    }))
-                  }
-                  value={newTeam.player1 ?? ''}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 2"
-                  onChange={(event) =>
-                    setNewTeam((newTeam) => ({
-                      ...newTeam,
-                      player2: event.target.value,
-                    }))
-                  }
-                  value={newTeam.player2 ?? ''}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 3"
-                  onChange={(event) =>
-                    setNewTeam((newTeam) => ({
-                      ...newTeam,
-                      player3: event.target.value,
-                    }))
-                  }
-                  value={newTeam.player3 ?? ''}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 4"
-                  onChange={(event) =>
-                    setNewTeam((newTeam) => ({
-                      ...newTeam,
-                      player4: event.target.value,
-                    }))
-                  }
-                  value={newTeam.player4 ?? ''}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 5"
-                  onChange={(event) =>
-                    setNewTeam((newTeam) => ({
-                      ...newTeam,
-                      player5: event.target.value,
-                    }))
-                  }
-                  value={newTeam.player5 ?? ''}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 6"
-                  onChange={(event) =>
-                    setNewTeam((newTeam) => ({
-                      ...newTeam,
-                      player6: event.target.value,
-                    }))
-                  }
-                  value={newTeam.player6 ?? ''}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 7"
-                  onChange={(event) =>
-                    setNewTeam((newTeam) => ({
-                      ...newTeam,
-                      player7: event.target.value,
-                    }))
-                  }
-                  value={newTeam.player7 ?? ''}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 8"
-                  onChange={(event) =>
-                    setNewTeam((newTeam) => ({
-                      ...newTeam,
-                      player8: event.target.value,
-                    }))
-                  }
-                  value={newTeam.player8 ?? ''}
-                />
+                <Stack direction="row" columnGap={1}>
+                  <TextField
+                    fullWidth={true}
+                    size="small"
+                    label="Spieler 1"
+                    onChange={(event) =>
+                      setNewTeam((newTeam) => ({
+                        ...newTeam,
+                        player1: event.target.value,
+                      }))
+                    }
+                    value={newTeam.player1 ?? ''}
+                  />
+                  <TextField
+                    fullWidth={true}
+                    size="small"
+                    label="Spieler 2"
+                    onChange={(event) =>
+                      setNewTeam((newTeam) => ({
+                        ...newTeam,
+                        player2: event.target.value,
+                      }))
+                    }
+                    value={newTeam.player2 ?? ''}
+                  />
+                </Stack>
+                <Stack direction="row" columnGap={1}>
+                  <TextField
+                    fullWidth={true}
+                    size="small"
+                    label="Spieler 3"
+                    onChange={(event) =>
+                      setNewTeam((newTeam) => ({
+                        ...newTeam,
+                        player3: event.target.value,
+                      }))
+                    }
+                    value={newTeam.player3 ?? ''}
+                  />
+                  <TextField
+                    fullWidth={true}
+                    size="small"
+                    label="Spieler 4"
+                    onChange={(event) =>
+                      setNewTeam((newTeam) => ({
+                        ...newTeam,
+                        player4: event.target.value,
+                      }))
+                    }
+                    value={newTeam.player4 ?? ''}
+                  />
+                </Stack>
+                <Stack direction="row" columnGap={1}>
+                  <TextField
+                    fullWidth={true}
+                    size="small"
+                    label="Spieler 5"
+                    onChange={(event) =>
+                      setNewTeam((newTeam) => ({
+                        ...newTeam,
+                        player5: event.target.value,
+                      }))
+                    }
+                    value={newTeam.player5 ?? ''}
+                  />
+                  <TextField
+                    fullWidth={true}
+                    size="small"
+                    label="Spieler 6"
+                    onChange={(event) =>
+                      setNewTeam((newTeam) => ({
+                        ...newTeam,
+                        player6: event.target.value,
+                      }))
+                    }
+                    value={newTeam.player6 ?? ''}
+                  />
+                </Stack>
+                <Stack direction="row" columnGap={1}>
+                  <TextField
+                    fullWidth={true}
+                    size="small"
+                    label="Spieler 7"
+                    onChange={(event) =>
+                      setNewTeam((newTeam) => ({
+                        ...newTeam,
+                        player7: event.target.value,
+                      }))
+                    }
+                    value={newTeam.player7 ?? ''}
+                  />
+                  <TextField
+                    fullWidth={true}
+                    size="small"
+                    label="Spieler 8"
+                    onChange={(event) =>
+                      setNewTeam((newTeam) => ({
+                        ...newTeam,
+                        player8: event.target.value,
+                      }))
+                    }
+                    value={newTeam.player8 ?? ''}
+                  />
+                </Stack>
               </Stack>
             </CardContent>
+            <Divider />
             <CardActions>
-              <Button size="small" onClick={() => { addTeam() }}>Hinzufügen</Button>
+              <Stack direction="row" columnGap={1}>
+                <Button
+                  size="small"
+                  onClick={() => { addTeam() }}
+                  disabled={teams.length >= 12}
+                >
+                  Hinzufügen
+                </Button>
+                <Typography
+                  variant="overline"
+                  display="block"
+                  sx={{ color: 'red' }}
+                >
+                  {teams.length >= 12 ? 'Vollständig' : ''}
+                </Typography>
+              </Stack>
             </CardActions>
           </Card>
         </Grid>
         {teams.map((team) => {
           return (
-            <Grid item xs={3} key = {team.id}>
-              <Teamcard team = {team} />
+            <Grid
+              item xs={3}
+              key={team.id}
+            >
+              <Teamcard
+                team={team}
+                teams={teams}
+                setTeams={setTeams}
+              />
             </Grid>
           )
         })}

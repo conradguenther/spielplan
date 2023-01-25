@@ -8,99 +8,113 @@ import Divider from '@mui/material/Divider'
 import { Typography } from '@mui/material'
 
 export default function Teamcard(props) {
-    console.log("Hier wurde Team eingegeben:")
-    console.log(props.team)
+
+    function deleteTeam() {
+        props.setTeams(
+            props.teams.filter((team) => team.id !== props.team.id)
+        )
+    }
+
     return (
         <>
-            <Card>
-            <CardContent>
-              <Stack direction="column" rowGap={1}>
-                <Typography 
-                    sx = {{padding: '4px'}}
-                    variant="overline"
-                    display="block"
-                > 
-                    {props.team.teamName} 
-                </Typography>
+            <Card sx = {{backgroundColor: '#B3C2C585'}}>
+                <CardContent>
+                    <Stack direction="column" rowGap={1}>
+                        <Typography
+                            sx={{ padding: '4px' }}
+                            variant="overline"
+                            display="block"
+                        >
+                            {props.team.teamName !== '' ? props.team.teamName : 'Teamname ???'}
+                        </Typography>
+                        <Divider />
+                        <Stack direction="row" columnGap={1}>
+                            <TextField
+                                fullWidth={true}
+                                size="small"
+                                label="Spieler 1"
+                                value={props.team.player1 ?? ''}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                            <TextField
+                                fullWidth={true}
+                                size="small"
+                                label="Spieler 2"
+                                value={props.team.player2 ?? ''}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Stack>
+                        <Stack direction="row" columnGap={1}>
+                            <TextField
+                                fullWidth={true}
+                                size="small"
+                                label="Spieler 3"
+                                value={props.team.player3 ?? ''}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                            <TextField
+                                fullWidth={true}
+                                size="small"
+                                label="Spieler 4"
+                                value={props.team.player4 ?? ''}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Stack>
+                        <Stack direction="row" columnGap={1}>
+                            <TextField
+                                fullWidth={true}
+                                size="small"
+                                label="Spieler 5"
+                                value={props.team.player5 ?? ''}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                            <TextField
+                                fullWidth={true}
+                                size="small"
+                                label="Spieler 6"
+                                value={props.team.player6 ?? ''}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Stack>
+                        <Stack direction="row" columnGap={1}>
+                            <TextField
+                                fullWidth={true}
+                                size="small"
+                                label="Spieler 7"
+                                value={props.team.player7 ?? ''}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                            <TextField
+                                fullWidth={true}
+                                size="small"
+                                label="Spieler 8"
+                                value={props.team.player8 ?? ''}
+                                InputProps={{
+                                    readOnly: true,
+                                }}
+                            />
+                        </Stack>
+                    </Stack>
+                </CardContent>
                 <Divider />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 1"
-                  value={props.team.player1 ?? ''}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 2"
-                  value={props.team.player2 ?? ''}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 3"
-                  value={props.team.player3 ?? ''}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 4"
-                  value={props.team.player4 ?? ''}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 5"
-                  value={props.team.player5 ?? ''}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 6"
-                  value={props.team.player6 ?? ''}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 7"
-                  value={props.team.player7 ?? ''}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  fullWidth={true}
-                  size="small"
-                  label="Spieler 8"
-                  value={props.team.player8 ?? ''}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-              </Stack>
-            </CardContent>
-            <CardActions>
-              <Button size="small" >Löschen</Button>
-            </CardActions>
-          </Card>
+                <CardActions>
+                    <Button size="small" onClick={deleteTeam}>Löschen</Button>
+                </CardActions>
+            </Card>
         </>
     );
 }
