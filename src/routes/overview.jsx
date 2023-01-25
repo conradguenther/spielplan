@@ -4,10 +4,12 @@ import CardContent from '@mui/material/CardContent'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Stack from '@mui/material/Stack'
-
+import Divider from '@mui/material/Divider'
 import Grid from "@mui/material/Grid"
+
 import { useState } from "react"
-import { Divider } from '@mui/material'
+
+import Teamcard from '../components/teamcard'
 
 
 export default function Overview() {
@@ -28,7 +30,6 @@ export default function Overview() {
   const [numberOfTeams, setNumberOfTeams] = useState(1)
 
   const addTeam = () => {
-    console.log("klick")
     setTeams([...teams, newTeam])
     setNumberOfTeams(numberOfTeams + 1)
     setNewTeam({
@@ -52,16 +53,15 @@ export default function Overview() {
       <h1>
         Das ist die Übersichtsseite
       </h1>
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item xs={3}>
           <Card>
             <CardContent>
               <Stack direction="column" rowGap={1}>
-                Neues Team:
                 <TextField
                   fullWidth={true}
                   size="small"
-                  label="Teamname"
+                  label="Neues Team"
                   onChange={(event) =>
                     setNewTeam((newTeam) => ({
                       ...newTeam,
@@ -176,8 +176,8 @@ export default function Overview() {
         </Grid>
         {teams.map((team) => {
           return (
-            <Grid item xs={4}>
-              {team.teamName}
+            <Grid item xs={3} key = {team.id}>
+              <Teamcard team = {team} />
             </Grid>
           )
         })}

@@ -26,7 +26,7 @@ export default function Nav() {
         <div>
             <List>
                 {navElements.map((navElement) => (
-                    <a href={navElement.href} style={{textDecoration: "none", color: "black"}}>
+                    <a key = {navElement.href} href={navElement.href} style={{textDecoration: "none", color: "black"}}>
                         <ListItem key={navElement.text} disablePadding>
                             <ListItemButton>
                                 <ListItemIcon>
