@@ -46,7 +46,27 @@ export default function Overview() {
       player8: '',
       points: 0,
     })
-    console.log(teams)
+  }
+
+  const saveTeams = () => {
+    var mysql = require('mysql')
+    var connection = mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      database: 'spielplan'
+    });
+
+    connection.connect()
+
+    connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
+      if (err) throw err
+
+      console.log('The solution is: ', rows[0].solution)
+    })
+
+    connection.end()
+    console.log("ok")
   }
 
   return (
@@ -190,7 +210,16 @@ export default function Overview() {
                   display="block"
                   sx={{ color: 'red' }}
                 >
-                  {teams.length >= 12 ? 'Vollständig' : ''}
+                  {teams.length >= 12 ?
+                    <Button
+                      size="small"
+                      onClick={() => { saveTeams() }}
+                      disabled={teams.length != 12}
+                      sx={{ color: "green" }}
+                    >
+                      Speicher
+                    </Button>
+                    : ''}
                 </Typography>
               </Stack>
             </CardActions>
