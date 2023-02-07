@@ -1,68 +1,58 @@
-const express = require('express');
-const db = require('./config/db')
+const express = require("express")
+const app = express()
+
+const Pool = require('pg').Pool
+const pool = new Pool({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'postgres',
+    password: 'password',
+    port: 5432,
+})
+
 const cors = require('cors')
 
-const app = express();
-const  PORT = 3002;
-app.use(cors());
+app.use(cors())
 app.use(express.json())
 
-// Route to get all posts
-app.get("/api/get", (req,res)=>{
-db.query("SELECT * FROM posts", (err,result)=>{
-    if(err) {
-    console.log(err)
-    } 
-res.send(result)
-});   });
+app.get('/test', (req, res) => {
+  console.log("erster erfolg")
+})
 
-// Route to get one post
-app.get("/api/getFromId/:id", (req,res)=>{
+//Insert Teams
+app.post('/addTeam', (req, res) => {
+    const teamName = req.body.teamName
+    const player1 = req.body.player1
+    const player2 = req.body.player2
+    const player3 = req.body.player3
+    const player4 = req.body.player4
+    const player5 = req.body.player5
+    const player6 = req.body.player6
+    const player7 = req.body.player7
+    const player8 = req.body.player8
 
-const id = req.params.id;
- db.query("SELECT * FROM posts WHERE id = ?", id, 
- (err,result)=>{
-    if(err) {
-    console.log(err)
-    } 
-    res.send(result)
-    });   });
+    pool.query("insert into Teams (teamName, player1, player2, player3, player4, player5, player6, player7, player8) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
+    [teamName, player1, player2, player3, player4, player5, player6, player7, player8],
+    (err, result) => {
+        if (err) {
+            console.log(err)
+        } else {
+        res.send('Team gespeichert')
+        }
+    })
+})
 
-// Route for creating the post
-app.post('/api/create', (req,res)=> {
+//Get the Teams
+app.get('/getTeams', (req, res) => {
+    pool.query('SELECT * FROM teams', (err, result) => {
+        if(err){
+            console.log(err)
+        } else {
+            res.send(result)
+        }
+    })
+})
 
-const username = req.body.userName;
-const title = req.body.title;
-const text = req.body.text;
-
-db.query("INSERT INTO posts (title, post_text, user_name) VALUES (?,?,?)",[title,text,username], (err,result)=>{
-   if(err) {
-   console.log(err)
-   } 
-   console.log(result)
-});   })
-
-// Route to like a post
-app.post('/api/like/:id',(req,res)=>{
-
-const id = req.params.id;
-db.query("UPDATE posts SET likes = likes + 1 WHERE id = ?",id, (err,result)=>{
-    if(err) {
-   console.log(err)   } 
-   console.log(result)
-    });    
-});
-
-// Route to delete a post
-
-app.delete('/api/delete/:id',(req,res)=>{
-const id = req.params.id;
-
-db.query("DELETE FROM posts WHERE id= ?", id, (err,result)=>{
-if(err) {
-console.log(err)
-        } }) })
-
-app.listen(PORT, ()=>{
-    console.log(`Server is running on ＄{PORT}`)
+app.listen(3001, () => {
+    console.log("Server running on Port 3001")
 })

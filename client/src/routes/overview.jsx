@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
 import Grid from "@mui/material/Grid"
 
+import Axios from 'axios'
 import { useState } from "react"
 
 import Teamcard from '../components/teamcard'
@@ -33,6 +34,21 @@ export default function Overview() {
   const addTeam = () => {
     setTeams([...teams, newTeam])
     setNumberOfTeams(numberOfTeams + 1)
+
+    Axios.post('http://localhost:3001/addTeam', {
+      teamName: newTeam.teamName,
+      player1: newTeam.player1,
+      player2: newTeam.player2,
+      player3: newTeam.player3,
+      player4: newTeam.player4,
+      player5: newTeam.player5,
+      player6: newTeam.player6,
+      player7: newTeam.player7,
+      player8: newTeam.player8
+    }).then(() => {
+      console.log("Team gespeichert")
+    })
+
     setNewTeam({
       id: numberOfTeams + 1,
       teamName: '',
@@ -49,24 +65,7 @@ export default function Overview() {
   }
 
   const saveTeams = () => {
-    var mysql = require('mysql')
-    var connection = mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: '',
-      database: 'spielplan'
-    });
 
-    connection.connect()
-
-    connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
-      if (err) throw err
-
-      console.log('The solution is: ', rows[0].solution)
-    })
-
-    connection.end()
-    console.log("ok")
   }
 
   return (
