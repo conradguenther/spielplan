@@ -21,7 +21,8 @@ app.get('/test', (req, res) => {
 
 //Insert Teams
 app.post('/addTeam', (req, res) => {
-    const teamName = req.body.teamName
+    const id = req.body.id
+    const teamname = req.body.teamname
     const player1 = req.body.player1
     const player2 = req.body.player2
     const player3 = req.body.player3
@@ -31,8 +32,9 @@ app.post('/addTeam', (req, res) => {
     const player7 = req.body.player7
     const player8 = req.body.player8
 
-    pool.query("insert into Teams (teamName, player1, player2, player3, player4, player5, player6, player7, player8) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
-    [teamName, player1, player2, player3, player4, player5, player6, player7, player8],
+    
+    pool.query("insert into Teams (id, teamname, player1, player2, player3, player4, player5, player6, player7, player8) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)",
+    [id, teamname, player1, player2, player3, player4, player5, player6, player7, player8],
     (err, result) => {
         if (err) {
             console.log(err)
@@ -40,6 +42,21 @@ app.post('/addTeam', (req, res) => {
         res.send('Team gespeichert')
         }
     })
+})
+
+//Delete a Team
+app.delete('/deleteTeam/:id', (req, res) => {
+  const id = req.params.id
+  console.log(req.params)
+  pool.query("DELETE FROM Teams WHERE id = $1",
+  [id],
+  (err, result) => {
+      if (err) {
+          console.log(err)
+      } else {
+      res.send('Team gelöscht')
+      }
+  })
 })
 
 //Get the Teams

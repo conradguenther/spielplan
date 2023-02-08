@@ -7,12 +7,18 @@ import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
 import { Typography } from '@mui/material'
 
+import Axios from 'axios'
+
 export default function Teamcard(props) {
 
     function deleteTeam() {
         props.setTeams(
             props.teams.filter((team) => team.id !== props.team.id)
         )
+        console.log(props.team.id)
+        Axios.delete('http://localhost:3001/deleteTeam/'+props.team.id).then(() => {
+            console.log("Team gelöscht")
+        })
     }
 
     return (
@@ -25,7 +31,7 @@ export default function Teamcard(props) {
                             variant="overline"
                             display="block"
                         >
-                            {props.team.teamName !== '' ? props.team.teamName : 'Teamname ???'}
+                            {props.team.teamname !== '' ? props.team.teamname : 'Teamname ???'}
                         </Typography>
                         <Divider />
                         <Stack direction="row" columnGap={1}>
