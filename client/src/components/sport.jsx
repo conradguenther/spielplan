@@ -22,7 +22,7 @@ export default function sport(props) {
     let list = []
     if (props.sport == 'Volleyball') list = [0, 18, 9, 27, 13, 4, 31, 22, 8, 26, 35, 17]
     if (props.sport == 'Fußball') list = [6, 24, 15, 33, 1, 28, 19, 10, 5, 23, 32, 14]
-    if (props.sport == 'Unihockey') list = [12, 30, 3, 21, 25, 16, 7, 34, 2, 20, 29, 11]
+    if (props.sport == 'Völkerball') list = [12, 30, 3, 21, 25, 16, 7, 34, 2, 20, 29, 11]
 
     const handleNewScore = (currentID, position, newValue) => {
         let newMatches = []

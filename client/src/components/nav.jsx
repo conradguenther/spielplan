@@ -6,6 +6,7 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import HomeIcon from '@mui/icons-material/Home'
 import RotateRightIcon from '@mui/icons-material/RotateRight';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 
 export default function Nav() {
 
@@ -16,9 +17,14 @@ export default function Nav() {
             icon: <HomeIcon />
         },
         {
+            text: 'Spielplan',
+            href: '/plan',
+            icon: <RotateRightIcon />
+        },
+        {
             text: 'Zusammenfassung',
             href: '/summary',
-            icon: <RotateRightIcon />
+            icon: <EmojiEventsIcon />
         }
     ]
 

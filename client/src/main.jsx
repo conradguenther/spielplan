@@ -8,6 +8,7 @@ import {
 import Root from "./routes/root"
 import ErrorPage from './routes/error-page'
 import Summary from "./routes/summary"
+import Plan from "./routes/plan"
 import Overview from "./routes/overview"
 
 import "./style.css"
@@ -24,9 +25,13 @@ const router = createBrowserRouter([
         element: <Overview />,
       },
       {
+        path: "plan",
+        element: <Plan />,
+      },
+      {
         path: "summary",
         element: <Summary />,
-      },
+      }
     ],
   },
 ]);
