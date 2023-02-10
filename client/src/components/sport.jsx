@@ -1,4 +1,4 @@
-import { ButtonGroup, Typography } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import Timeline from '@mui/lab/Timeline'
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem'
 import TimelineSeparator from '@mui/lab/TimelineSeparator'
@@ -8,16 +8,17 @@ import TimelineDot from '@mui/lab/TimelineDot'
 import Card from '@mui/material/Card'
 import Grid from "@mui/material/Grid"
 import CardContent from '@mui/material/CardContent'
-import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Stack from '@mui/material/Stack'
 import IconButton from '@mui/material/IconButton'
 import CheckIcon from '@mui/icons-material/Check'
 
+import { useState } from "react"
 import Axios from 'axios'
 
 export default function sport(props) {
 
+    const [current, setCurrent] = useState(0)
     let list = []
     if (props.sport == 'Volleyball') list = [0, 18, 9, 27, 13, 4, 31, 22, 8, 26, 35, 17]
     if (props.sport == 'Fußball') list = [6, 24, 15, 33, 1, 28, 19, 10, 5, 23, 32, 14]
@@ -55,12 +56,15 @@ export default function sport(props) {
         props.setMatches(newMatches);
     }
 
+    const goOn = () => {
+        if(current < 11) setCurrent(current+1)
+    }
+    const goBack = () => {
+        if(current > 0) setCurrent(current-1)
+    }
+
     const safeMatches = (matchID) => {
-        console.log("klicked")
-        console.log(matchID)
-        console.log(props.matches)
         const update = props.matches.find(match => match.id == matchID)
-        console.log(update)
 
         Axios.put('http://localhost:3001/updateMatch/'+matchID, update).then(() => {
             console.log("Match gespeichert")
@@ -75,6 +79,12 @@ export default function sport(props) {
                     <Typography variant='h3'>
                         {props.sport}
                     </Typography>
+                    <Button onClick={() => goOn()}>
+                        Nächste Spiel
+                    </Button>
+                    <Button onClick={() => goBack()}>
+                        Zurück
+                    </Button>
                     <Timeline
                         sx={{
                             padding: 0,
@@ -84,19 +94,20 @@ export default function sport(props) {
                             },
                         }}
                     >
-                        {props.matches.length == 36 ? (list.map((i) => {
+                        {props.matches.length == 36 ? (list.map((i, index) => {
+                            console.log(index, current)
                             return (
                                 <TimelineItem key={props.matches[i].id}>
                                     <TimelineSeparator>
                                         <TimelineDot
-                                            variant={true ? "filled" : 'outlined'}
-                                            color={true ? "success" : 'secondary'}
+                                            variant={current == index ? "filled" : 'outlined'}
+                                            color={current == index ? "success" : 'secondary'}
                                         />
                                         <TimelineConnector />
                                     </TimelineSeparator>
                                     <TimelineContent
                                         sx={{ paddingLeft: 0 }}
-                                        color={true ? "text.primary" : "text.secondary"}
+                                        color={current == index ? "text.primary" : "text.secondary"}
                                     >
                                         <Grid container spacing={1} alignItems="center">
                                             <Grid
@@ -130,7 +141,8 @@ export default function sport(props) {
                                                     />
                                                     <IconButton 
                                                         sx={{ paddingLeft: 0, paddingRight: 0 }}
-                                                        onClick = {() => {safeMatches(props.matches[i].id)}}
+                                                        onClick = {() => {safeMatches(props.matches[i].id, index)}}
+                                                        disabled={!(current == index)}
                                                     >
                                                         <CheckIcon/>
                                                     </IconButton>

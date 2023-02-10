@@ -103,15 +103,6 @@ app.delete('/deleteMatches', (req, res) => {
 
 //Update Matches
 app.put('/updateMatch/:id', (req, res) => {
-    console.log(
-        req.params.id
-    )
-    console.log(
-        req.body.points2
-    )
-    console.log(
-        req.body.points1
-    )
     const id = req.params.id
     const points1 = req.body.points1
     const points2 = req.body.points2
