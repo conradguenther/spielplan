@@ -191,25 +191,15 @@ export default function Overview() {
               <Divider />
               <CardActions>
                 <Stack direction="row" columnGap={1}>
-                    <Button
-                      size="small"
-                      onClick={() => {
-                        addTeam()
-                      }}
-                      disabled={teams.length >= 12 || !newTeam.teamname || !newTeam.player1 || !newTeam.player2 || !newTeam.player3 || !newTeam.player4 || !newTeam.player5 || !newTeam.player6}
-                    >
-                      Hinzufügen
-                    </Button>
-                  <Typography
-                    variant="overline"
-                    display="block"
-                    sx={{ color: 'red' }}
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      addTeam()
+                    }}
+                    disabled={teams.length >= 12 || !newTeam.teamname || !newTeam.player1 || !newTeam.player2 || !newTeam.player3 || !newTeam.player4 || !newTeam.player5 || !newTeam.player6}
                   >
-                    {teams.length >= 12 ?
-                      <Typography>Vollständig</Typography>
-                      : ''
-                    }
-                  </Typography>
+                    Hinzufügen
+                  </Button>
                 </Stack>
               </CardActions>
             </Card>

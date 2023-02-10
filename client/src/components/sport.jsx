@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material'
+import { ButtonGroup, Typography } from '@mui/material'
 import Timeline from '@mui/lab/Timeline'
 import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem'
 import TimelineSeparator from '@mui/lab/TimelineSeparator'
@@ -14,7 +14,59 @@ import Stack from '@mui/material/Stack'
 import IconButton from '@mui/material/IconButton'
 import CheckIcon from '@mui/icons-material/Check'
 
+import Axios from 'axios'
+
 export default function sport(props) {
+
+    let list = []
+    if (props.sport == 'Volleyball') list = [0, 18, 9, 27, 13, 4, 31, 22, 8, 26, 35, 17]
+    if (props.sport == 'Fußball') list = [6, 24, 15, 33, 1, 28, 19, 10, 5, 23, 32, 14]
+    if (props.sport == 'Unihockey') list = [12, 30, 3, 21, 25, 16, 7, 34, 2, 20, 29, 11]
+
+    const handleNewScore = (currentID, position, newValue) => {
+        let newMatches = []
+        if (position == 1) {
+            newMatches = props.matches.map((match) => {
+                if (match.id == currentID) {
+                    const updatedMatch = {
+                        ...match,
+                        points1: newValue,
+                    };
+
+                    return updatedMatch;
+                }
+                return match;
+            });
+        }
+        if (position == 2) {
+            newMatches = props.matches.map((match) => {
+                if (match.id == currentID) {
+                    const updatedMatch = {
+                        ...match,
+                        points2: newValue,
+                    };
+
+                    return updatedMatch;
+                }
+                return match;
+            });
+        }
+
+        props.setMatches(newMatches);
+    }
+
+    const safeMatches = (matchID) => {
+        console.log("klicked")
+        console.log(matchID)
+        console.log(props.matches)
+        const update = props.matches.find(match => match.id == matchID)
+        console.log(update)
+
+        Axios.put('http://localhost:3001/updateMatch/'+matchID, update).then(() => {
+            console.log("Match gespeichert")
+          })
+    }
+
 
     return (
         <>
@@ -32,163 +84,64 @@ export default function sport(props) {
                             },
                         }}
                     >
-
-                        <TimelineItem>
-                            <TimelineSeparator>
-                                <TimelineDot variant="outlined" />
-                                <TimelineConnector />
-                            </TimelineSeparator>
-                            <TimelineContent sx={{ paddingLeft: 0 }} color="text.secondary">
-                                <Grid container spacing={1} alignItems="center">
-                                    <Grid
-                                        item xs={6}
-                                        sx={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                        {props.matches.length == 36 ? (list.map((i) => {
+                            return (
+                                <TimelineItem key={props.matches[i].id}>
+                                    <TimelineSeparator>
+                                        <TimelineDot
+                                            variant={true ? "filled" : 'outlined'}
+                                            color={true ? "success" : 'secondary'}
+                                        />
+                                        <TimelineConnector />
+                                    </TimelineSeparator>
+                                    <TimelineContent
+                                        sx={{ paddingLeft: 0 }}
+                                        color={true ? "text.primary" : "text.secondary"}
                                     >
-                                        <div>Teamnummer 1</div>
-                                        <div style={{ fontWeight: '700' }}>vs.</div>
-                                        <div>Ein anderes Team</div>
-                                    </Grid>
-                                    <Grid item xs={6} sx={{ overflow: 'hidden' }}>
-                                        <Stack spacing={1} direction="row">
-                                            <TextField
-                                                type="number"
-                                                size="small"
-                                                sx={{ width: '50%' }}
-                                            // onChange={(event) =>
-                                            //     setNewTeam((newTeam) => ({
-                                            //         ...newTeam,
-                                            //         teamname: event.target.value,
-                                            //         id: uuid().slice(0, 8),
-                                            //     }))
-                                            // }
-                                            // value={newTeam.teamname ?? ''}
-                                            />
-                                            <Typography sx={{ paddingTop: 1 }}>:</Typography>
-                                            <TextField
-                                                type="number"
-                                                size="small"
-                                                sx={{ width: '50%' }}
-                                            // onChange={(event) =>
-                                            //     setNewTeam((newTeam) => ({
-                                            //         ...newTeam,
-                                            //         teamname: event.target.value,
-                                            //         id: uuid().slice(0, 8),
-                                            //     }))
-                                            // }
-                                            // value={newTeam.teamname ?? ''}
-                                            />
-                                            <IconButton aria-label="delete" sx={{ paddingLeft: 0, paddingRight: 0 }}>
-                                                <CheckIcon />
-                                            </IconButton>
-                                        </Stack>
-                                    </Grid>
-                                </Grid>
-                            </TimelineContent>
-                        </TimelineItem>
-                        <TimelineItem>
-                            <TimelineSeparator>
-                                <TimelineDot color="success" />
-                                <TimelineConnector />
-                            </TimelineSeparator>
-                            <TimelineContent sx={{ paddingLeft: 0}}>
-                                <Grid container spacing={1} alignItems="center">
-                                    <Grid
-                                        item xs={6}
-                                        sx={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-                                    >
-                                        <div>Teamnummer 1</div>
-                                        <div style={{ fontWeight: '700' }}>vs.</div>
-                                        <div>Ein anderes Team</div>
-                                    </Grid>
-                                    <Grid item xs={6} sx={{ overflow: 'hidden' }}>
-                                        <Stack spacing={1} direction="row">
-                                            <TextField
-                                                type="number"
-                                                size="small"
-                                                sx={{ width: '50%' }}
-                                            // onChange={(event) =>
-                                            //     setNewTeam((newTeam) => ({
-                                            //         ...newTeam,
-                                            //         teamname: event.target.value,
-                                            //         id: uuid().slice(0, 8),
-                                            //     }))
-                                            // }
-                                            // value={newTeam.teamname ?? ''}
-                                            />
-                                            <Typography sx={{ paddingTop: 1 }}>:</Typography>
-                                            <TextField
-                                                type="number"
-                                                size="small"
-                                                sx={{ width: '50%' }}
-                                            // onChange={(event) =>
-                                            //     setNewTeam((newTeam) => ({
-                                            //         ...newTeam,
-                                            //         teamname: event.target.value,
-                                            //         id: uuid().slice(0, 8),
-                                            //     }))
-                                            // }
-                                            // value={newTeam.teamname ?? ''}
-                                            />
-                                            <IconButton aria-label="delete" sx={{ paddingLeft: 0, paddingRight: 0 }}>
-                                                <CheckIcon />
-                                            </IconButton>
-                                        </Stack>
-                                    </Grid>
-                                </Grid>
-                            </TimelineContent>
-                        </TimelineItem>
-                        <TimelineItem>
-                            <TimelineSeparator>
-                                <TimelineDot variant="outlined" />
-                                <TimelineConnector />
-                            </TimelineSeparator>
-                            <TimelineContent sx={{ paddingLeft: 0 }} color="text.secondary">
-                                <Grid container spacing={1} alignItems="center">
-                                    <Grid
-                                        item xs={6}
-                                        sx={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-                                    >
-                                        <div>Teamnummer 1</div>
-                                        <div style={{ fontWeight: '700' }}>vs.</div>
-                                        <div>Ein anderes Team</div>
-                                    </Grid>
-                                    <Grid item xs={6} sx={{ overflow: 'hidden' }}>
-                                        <Stack spacing={1} direction="row">
-                                            <TextField
-                                                type="number"
-                                                size="small"
-                                                sx={{ width: '50%' }}
-                                            // onChange={(event) =>
-                                            //     setNewTeam((newTeam) => ({
-                                            //         ...newTeam,
-                                            //         teamname: event.target.value,
-                                            //         id: uuid().slice(0, 8),
-                                            //     }))
-                                            // }
-                                            // value={newTeam.teamname ?? ''}
-                                            />
-                                            <Typography sx={{ paddingTop: 1 }}>:</Typography>
-                                            <TextField
-                                                type="number"
-                                                size="small"
-                                                sx={{ width: '50%' }}
-                                            // onChange={(event) =>
-                                            //     setNewTeam((newTeam) => ({
-                                            //         ...newTeam,
-                                            //         teamname: event.target.value,
-                                            //         id: uuid().slice(0, 8),
-                                            //     }))
-                                            // }
-                                            // value={newTeam.teamname ?? ''}
-                                            />
-                                            <IconButton aria-label="delete" sx={{ paddingLeft: 0, paddingRight: 0 }}>
-                                                <CheckIcon />
-                                            </IconButton>
-                                        </Stack>
-                                    </Grid>
-                                </Grid>
-                            </TimelineContent>
-                        </TimelineItem>
+                                        <Grid container spacing={1} alignItems="center">
+                                            <Grid
+                                                item xs={6}
+                                                sx={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                                            >
+                                                <div>{props.matches[i].team1}</div>
+                                                <div style={{ fontWeight: '700' }}>vs.</div>
+                                                <div>{props.matches[i].team2}</div>
+                                            </Grid>
+                                            <Grid item xs={6} sx={{ overflow: 'hidden' }}>
+                                                <Stack spacing={1} direction="row">
+                                                    <TextField
+                                                        type="number"
+                                                        size="small"
+                                                        sx={{ width: '50%' }}
+                                                        onChange={(event) =>
+                                                            handleNewScore(props.matches[i].id, 1, event.target.value)
+                                                        }
+                                                    defaultValue = {props.matches[i].points1}
+                                                    />
+                                                    <Typography sx={{ paddingTop: 1 }}>:</Typography>
+                                                    <TextField
+                                                        type="number"
+                                                        size="small"
+                                                        sx={{ width: '50%' }}
+                                                        onChange={(event) =>
+                                                            handleNewScore(props.matches[i].id, 2, event.target.value)
+                                                        }
+                                                        defaultValue = {props.matches[i].points2}
+                                                    />
+                                                    <IconButton 
+                                                        sx={{ paddingLeft: 0, paddingRight: 0 }}
+                                                        onClick = {() => {safeMatches(props.matches[i].id)}}
+                                                    >
+                                                        <CheckIcon/>
+                                                    </IconButton>
+                                                </Stack>
+                                            </Grid>
+                                        </Grid>
+                                    </TimelineContent>
+                                </TimelineItem>
+                            )
+                        })) 
+                        : ('')}
                     </Timeline>
                 </CardContent>
             </Card>
