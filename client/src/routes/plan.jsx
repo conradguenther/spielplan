@@ -1,7 +1,9 @@
+import * as React from 'react'
 import Grid from "@mui/material/Grid"
 import Sport from "../components/sport"
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import Snackbar from '@mui/material/Snackbar'
 
 import Axios from 'axios'
 import { useState, useEffect } from "react"
@@ -13,6 +15,7 @@ export default function Plan() {
   const [activ, setActiv] = useState(false)
   const [teams, setTeams] = useState([])
   const [matches, setMatches] = useState([])
+  const [open, setOpen] = useState(false)
   //Hol Teams einmalig
   useEffect(() => {
     Axios.get('http://localhost:3001/getTeams').then((responce) => {
@@ -63,15 +66,15 @@ export default function Plan() {
     <>
       <Grid container spacing={3}>
         <Grid item xs={4}>
-          <Sport sport='Volleyball' matches={matches} setMatches={setMatches} />
+          <Sport sport='Volleyball' matches={matches} setMatches={setMatches} setOpen={setOpen}/>
         </Grid>
         
         <Grid item xs={4}>
-          <Sport sport='Fußball' matches={matches} setMatches={setMatches} />
+          <Sport sport='Fußball' matches={matches} setMatches={setMatches} setOpen={setOpen}/>
         </Grid>
 
         <Grid item xs={4}>
-          <Sport sport='Völkerball' matches={matches} setMatches={setMatches} />
+          <Sport sport='Völkerball' matches={matches} setMatches={setMatches} setOpen={setOpen}/>
         </Grid>
       </Grid>
       <Stack direction="row" spacing={2}>
@@ -96,6 +99,12 @@ export default function Plan() {
       >
         existierenden Spielplan laden
       </Button>
+      <Snackbar
+        open={open}
+        autoHideDuration={2000}
+        onClose={() => { setOpen(false) }}
+        message="gespeichert"
+      />
     </>
   );
 }

@@ -67,6 +67,7 @@ export default function sport(props) {
         const update = props.matches.find(match => match.id == matchID)
 
         Axios.put('http://localhost:3001/updateMatch/'+matchID, update).then(() => {
+            props.setOpen(true)
             console.log("Match gespeichert")
           })
     }
