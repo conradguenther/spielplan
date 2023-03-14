@@ -39,9 +39,9 @@ export default function Summary() {
     const [results, setResults] = useState([])
     const [loadable, setLoadable] = useState(true)
 
-    const volleyList = [0, 18, 9, 27, 13, 4, 31, 22, 8, 26, 35, 17]
-    const footList = [6, 24, 15, 33, 1, 28, 19, 10, 5, 23, 32, 14]
-    const völkerList = [12, 30, 3, 21, 25, 16, 7, 34, 2, 20, 29, 11]
+    const volleyList = [0, 21, 3, 24, 6, 27, 9, 30, 12, 33, 15, 36, 18]
+    const footList = [7, 28, 10, 31, 13, 34, 16, 37, 19, 1, 22, 4, 25]
+    const völkerList = [11, 32, 14, 35, 17, 38, 20, 2, 23, 5, 26, 8, 29]
 
     useEffect(() => {
         Axios.get('http://localhost:3001/getTeams').then((responce) => {

@@ -63,7 +63,7 @@ export default function Overview() {
   return (
     <>
       <Grid container spacing={1}>
-        {teams.length != 12 ?
+        {teams.length != 13 ?
           <Grid item xs={3}>
             <Card sx={{ backgroundColor: '#E0E3DDbb' }}>
               <CardContent>
@@ -196,7 +196,7 @@ export default function Overview() {
                     onClick={() => {
                       addTeam()
                     }}
-                    disabled={teams.length >= 12 || !newTeam.teamname || !newTeam.player1 || !newTeam.player2 || !newTeam.player3 || !newTeam.player4 || !newTeam.player5 || !newTeam.player6}
+                    disabled={teams.length >= 13 || !newTeam.teamname || !newTeam.player1 || !newTeam.player2 || !newTeam.player3 || !newTeam.player4 || !newTeam.player5 || !newTeam.player6}
                   >
                     Hinzufügen
                   </Button>

@@ -17,7 +17,7 @@ export default function Plan() {
   useEffect(() => {
     Axios.get('http://localhost:3001/getTeams').then((responce) => {
       setTeams(responce.data.rows)
-      if (responce.data.rows.length == 12) setFull(true)
+      if (responce.data.rows.length == 13) setFull(true)
     })
   }, [])
 
@@ -28,12 +28,12 @@ export default function Plan() {
 
     Axios.delete('http://localhost:3001/deleteMatches/').then(() => {
       console.log("Matches gelöscht")
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 13; i++) {
         for (let j = 1; j < 4; j++) {
           setMatches((matches) => ([...matches, {
             id: (i * 3 + j),
             team1: teams[i].teamname,
-            team2: teams[((i + j) % 12)].teamname,
+            team2: teams[((i + j) % 13)].teamname,
             points1: 0,
             points2: 0,
           }]))
@@ -41,7 +41,7 @@ export default function Plan() {
           Axios.post('http://localhost:3001/addMatch', {
             id: (i * 3 + j),
             team1: teams[i].teamname,
-            team2: teams[((i + j) % 12)].teamname,
+            team2: teams[((i + j) % 13)].teamname,
             points1: 0,
             points2: 0,
           }).then(() => {

@@ -20,9 +20,9 @@ export default function sport(props) {
 
     const [current, setCurrent] = useState(0)
     let list = []
-    if (props.sport == 'Volleyball') list = [0, 18, 9, 27, 13, 4, 31, 22, 8, 26, 35, 17]
-    if (props.sport == 'Fußball') list = [6, 24, 15, 33, 1, 28, 19, 10, 5, 23, 32, 14]
-    if (props.sport == 'Völkerball') list = [12, 30, 3, 21, 25, 16, 7, 34, 2, 20, 29, 11]
+    if (props.sport == 'Volleyball') list = [0, 21, 3, 24, 6, 27, 9, 30, 12, 33, 15, 36, 18]
+    if (props.sport == 'Fußball') list = [7, 28, 10, 31, 13, 34, 16, 37, 19, 1, 22, 4, 25]
+    if (props.sport == 'Völkerball') list = [11, 32, 14, 35, 17, 38, 20, 2, 23, 5, 26, 8, 29]
 
     const handleNewScore = (currentID, position, newValue) => {
         let newMatches = []
@@ -94,7 +94,7 @@ export default function sport(props) {
                             },
                         }}
                     >
-                        {props.matches.length == 36 ? (list.map((i, index) => {
+                        {props.matches.length == 39 ? (list.map((i, index) => {
                             console.log(index, current)
                             return (
                                 <TimelineItem key={props.matches[i].id}>
