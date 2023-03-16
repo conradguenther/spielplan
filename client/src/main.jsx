@@ -10,6 +10,7 @@ import ErrorPage from './routes/error-page'
 import Summary from "./routes/summary"
 import Plan from "./routes/plan"
 import Overview from "./routes/overview"
+import Final from "./routes/final"
 
 import "./style.css"
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "summary",
         element: <Summary />,
+      },
+      {
+        path: "final",
+        element: <Final />,
       }
     ],
   },

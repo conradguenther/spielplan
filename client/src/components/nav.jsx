@@ -25,6 +25,11 @@ export default function Nav() {
             text: 'Zusammenfassung',
             href: '/summary',
             icon: <EmojiEventsIcon />
+        },
+        {
+            text: 'Finale',
+            href: '/final',
+            icon: <EmojiEventsIcon />
         }
     ]
 

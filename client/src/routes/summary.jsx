@@ -79,7 +79,7 @@ export default function Summary() {
                         if (result.teamName == match.team1) {
                             if (game == 'völker') {
                                 result.völkerDone = result.völkerDone + match.points1
-                                result.völkerGot = result.völkerDone + match.points2
+                                result.völkerGot = result.völkerGot + match.points2
                             }
                             if (game == 'volley') {
                                 result.volleyDone = result.volleyDone + match.points1
@@ -97,7 +97,7 @@ export default function Summary() {
                         if (result.teamName == match.team2) {
                             if (game == 'völker') {
                                 result.völkerDone = result.völkerDone + match.points2
-                                result.völkerGot = result.völkerDone + match.points1
+                                result.völkerGot = result.völkerGot + match.points1
                             }
                             if (game == 'volley') {
                                 result.volleyDone = result.volleyDone + match.points2
@@ -120,7 +120,7 @@ export default function Summary() {
                         if (result.teamName == match.team2) {
                             if (game == 'völker') {
                                 result.völkerDone = result.völkerDone + match.points2
-                                result.völkerGot = result.völkerDone + match.points1
+                                result.völkerGot = result.völkerGot + match.points1
                             }
                             if (game == 'volley') {
                                 result.volleyDone = result.volleyDone + match.points2
@@ -137,7 +137,7 @@ export default function Summary() {
                         if (result.teamName == match.team1) {
                             if (game == 'völker') {
                                 result.völkerDone = result.völkerDone + match.points1
-                                result.völkerGot = result.völkerDone + match.points2
+                                result.völkerGot = result.völkerGot + match.points2
                             }
                             if (game == 'volley') {
                                 result.volleyDone = result.volleyDone + match.points1
@@ -160,7 +160,7 @@ export default function Summary() {
                         if (result.teamName == match.team1) {
                             if (game == 'völker') {
                                 result.völkerDone = result.völkerDone + match.points1
-                                result.völkerGot = result.völkerDone + match.points2
+                                result.völkerGot = result.völkerGot + match.points2
                             }
                             if (game == 'volley') {
                                 result.volleyDone = result.volleyDone + match.points1
@@ -177,7 +177,7 @@ export default function Summary() {
                         if (result.teamName == match.team2) {
                             if (game == 'völker') {
                                 result.völkerDone = result.völkerDone + match.points2
-                                result.völkerGot = result.völkerDone + match.points1
+                                result.völkerGot = result.völkerGot + match.points1
                             }
                             if (game == 'volley') {
                                 result.volleyDone = result.volleyDone + match.points2
