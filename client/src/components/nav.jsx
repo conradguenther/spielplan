@@ -7,6 +7,7 @@ import ListItemText from '@mui/material/ListItemText'
 import HomeIcon from '@mui/icons-material/Home'
 import RotateRightIcon from '@mui/icons-material/RotateRight';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 
 export default function Nav() {
 
@@ -29,7 +30,7 @@ export default function Nav() {
         {
             text: 'Finale',
             href: '/final',
-            icon: <EmojiEventsIcon />
+            icon: <MilitaryTechIcon />
         }
     ]
 

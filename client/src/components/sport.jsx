@@ -115,9 +115,9 @@ export default function sport(props) {
                                                 item xs={6}
                                                 sx={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                                             >
-                                                <div>{props.matches[i].team1}</div>
+                                                <div style={{textAlign:"center"}}>{props.matches[i].team1}</div>
                                                 <div style={{ fontWeight: '700' }}>vs.</div>
-                                                <div>{props.matches[i].team2}</div>
+                                                <div style={{textAlign:"center"}}>{props.matches[i].team2}</div>
                                             </Grid>
                                             <Grid item xs={6} sx={{ overflow: 'hidden' }}>
                                                 <Stack spacing={1} direction="row">

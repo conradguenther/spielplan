@@ -12,7 +12,6 @@ import Axios from 'axios'
 import { useState, useEffect } from "react"
 
 import Teamcard from '../components/teamcard'
-import { Typography } from '@mui/material'
 
 
 export default function Overview() {
@@ -196,7 +195,7 @@ export default function Overview() {
                     onClick={() => {
                       addTeam()
                     }}
-                    disabled={teams.length >= 13 || !newTeam.teamname || !newTeam.player1 || !newTeam.player2 || !newTeam.player3 || !newTeam.player4 || !newTeam.player5 || !newTeam.player6}
+                    disabled={teams.length >= 13 || !newTeam.teamname}
                   >
                     Hinzufügen
                   </Button>
