@@ -66,16 +66,20 @@ export default function Plan() {
     <>
       <Grid container spacing={3}>
         <Grid item xs={4}>
-          <Sport sport='Volleyball' matches={matches} setMatches={setMatches} setOpen={setOpen}/>
-        </Grid>
-        
-        <Grid item xs={4}>
-          <Sport sport='Fußball' matches={matches} setMatches={setMatches} setOpen={setOpen}/>
+          <Sport sport='Fußball' matches={matches} setMatches={setMatches} setOpen={setOpen} />
         </Grid>
 
         <Grid item xs={4}>
-          <Sport sport='Völkerball' matches={matches} setMatches={setMatches} setOpen={setOpen}/>
+          <Sport sport='Völkerball' matches={matches} setMatches={setMatches} setOpen={setOpen} />
         </Grid>
+
+        <Grid item xs={4}>
+          <Sport sport='Volleyball' matches={matches} setMatches={setMatches} setOpen={setOpen} />
+        </Grid>
+
+
+
+
       </Grid>
       <Stack direction="row" spacing={2}>
         <Button

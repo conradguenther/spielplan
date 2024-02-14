@@ -60,7 +60,7 @@ app.delete('/deleteTeam/:id', (req, res) => {
 
 //Get the Teams
 app.get('/getTeams', (req, res) => {
-    pool.query('SELECT * FROM teams', (err, result) => {
+    pool.query('SELECT * FROM teams ORDER BY "id"', (err, result) => {
         if(err){
             console.log(err)
         } else {

@@ -57,7 +57,7 @@ export default function sport(props) {
     }
 
     const goOn = () => {
-        if(current < 11) setCurrent(current+1)
+        if(current < 12) setCurrent(current+1)
     }
     const goBack = () => {
         if(current > 0) setCurrent(current-1)
