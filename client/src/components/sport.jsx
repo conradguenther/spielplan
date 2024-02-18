@@ -16,13 +16,15 @@ import CheckIcon from '@mui/icons-material/Check'
 import { useState } from "react"
 import Axios from 'axios'
 
+import { kindOfSports } from '../kindOfSports'
+
 export default function sport(props) {
 
     const [current, setCurrent] = useState(0)
     let list = []
-    if (props.sport == 'Volleyball') list = [0, 21, 3, 24, 6, 27, 9, 30, 12, 33, 15, 36, 18]
-    if (props.sport == 'Fußball') list = [7, 28, 10, 31, 13, 34, 16, 37, 19, 1, 22, 4, 25]
-    if (props.sport == 'Völkerball') list = [11, 32, 14, 35, 17, 38, 20, 2, 23, 5, 26, 8, 29]
+    if (props.sport == kindOfSports[0]) list = [0, 21, 3, 24, 6, 27, 9, 30, 12, 33, 15, 36, 18]
+    if (props.sport == kindOfSports[1]) list = [7, 28, 10, 31, 13, 34, 16, 37, 19, 1, 22, 4, 25]
+    if (props.sport == kindOfSports[2]) list = [11, 32, 14, 35, 17, 38, 20, 2, 23, 5, 26, 8, 29]
 
     const handleNewScore = (currentID, position, newValue) => {
         let newMatches = []
@@ -115,9 +117,9 @@ export default function sport(props) {
                                                 item xs={6}
                                                 sx={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                                             >
-                                                <div style={{textAlign:"center"}}>{props.matches[i].team1}</div>
+                                                <div style={{textAlign:"center"}}>{(props.matches[i].team1.length < 20) ? props.matches[i].team1 : props.matches[i].team1.slice(0, 17) + "..."}</div>
                                                 <div style={{ fontWeight: '700' }}>vs.</div>
-                                                <div style={{textAlign:"center"}}>{props.matches[i].team2}</div>
+                                                <div style={{textAlign:"center"}}>{(props.matches[i].team2.length < 20) ? props.matches[i].team2 : props.matches[i].team2.slice(0, 17) + "..."}</div>
                                             </Grid>
                                             <Grid item xs={6} sx={{ overflow: 'hidden' }}>
                                                 <Stack spacing={1} direction="row">
@@ -130,7 +132,6 @@ export default function sport(props) {
                                                         }
                                                     defaultValue = {props.matches[i].points1}
                                                     />
-                                                    <Typography sx={{ paddingTop: 1 }}>:</Typography>
                                                     <TextField
                                                         type="number"
                                                         size="small"

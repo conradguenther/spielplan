@@ -16,40 +16,8 @@ import Axios from 'axios'
 import { useState, useEffect } from "react"
 
 export default function Final() {
-    const [sports, setSports] = useState([
-        "Volleyball",
-        "Völkerball",
-        "Fußball"
-    ])
-    const [titels, setTitels] = useState([
-        "Spiel um Platz 1",
-        "Spiel um Platz 2",
-        "Spiel um Platz 3"
-    ])
-    const [results, setResults] = useState([{
-        teamName: "",
-        points: 0,
-    },
-    {
-        teamName: "",
-        points: 0,
-    },
-    {
-        teamName: "",
-        points: 0,
-    },
-    {
-        teamName: "",
-        points: 0,
-    },
-    {
-        teamName: "",
-        points: 0,
-    },
-    {
-        teamName: "",
-        points: 0,
-    }])
+
+    const [results, setResults] = useState([])
     const [loadable, setLoadable] = useState(true)
 
     useEffect(() => {
@@ -58,6 +26,11 @@ export default function Final() {
                 return ({
                     teamName: team.teamname,
                     points: 0,
+                    wins: 0,
+                    loose: 0,
+                    equal: 0,
+                    pointsDone: 0,
+                    pointsGot: 0,
                 })
             })
             )
@@ -66,64 +39,112 @@ export default function Final() {
 
     const loadResults = () => {
         setLoadable(false)
-
         Axios.get('http://localhost:3001/getMatches').then((responce) => {
-            responce.data.rows.map((match) => {
+            responce.data.rows.map((match, index) => {
                 let copyResults = results
 
                 if (match.points1 > match.points2) {
                     copyResults = results.map((result) => {
                         if (result.teamName == match.team1) {
+                            result.pointsDone = result.pointsDone + match.points1
+                            result.pointsGot = result.pointsGot + match.points2
+
                             result.points = result.points + 3
+                            result.wins = result.wins + 1
                             console.log(result)
+                            return (result)
+                        }
+                        if (result.teamName == match.team2) {
+                            result.pointsDone = result.pointsDone + match.points2
+                            result.pointsGot = result.pointsGot + match.points1
+
+                            result.loose = result.loose + 1
                             return (result)
                         }
                         return (result)
                     })
-                    setResults(copyResults.sort((a, b) => b.points - a.points))
+                    setResults(copyResults.sort((a, b) => {
+                        const comparePoints = b.points - a.points;
+                        const hitsA = a.pointsDone - a.pointsGot;
+                        const hitsB = b.pointsDone - b.pointsGot;
+                        const compareHits = hitsB - hitsA;
+
+                        return comparePoints || compareHits
+                    }))
                 }
 
                 if (match.points1 < match.points2) {
                     copyResults = copyResults.map((result) => {
                         if (result.teamName == match.team2) {
+                            result.pointsDone = result.pointsDone + match.points2
+                            result.pointsGot = result.pointsGot + match.points1
+
                             result.points = result.points + 3
+                            result.wins = result.wins + 1
+                            return (result)
+                        }
+                        if (result.teamName == match.team1) {
+                            result.pointsDone = result.pointsDone + match.points1
+                            result.pointsGot = result.pointsGot + match.points2
+
+                            result.loose = result.loose + 1
                             return (result)
                         }
                         return (result)
                     })
-                    setResults(copyResults.sort((a, b) => b.points - a.points))
+                    setResults(copyResults.sort((a, b) => {
+                        const comparePoints = b.points - a.points;
+                        const hitsA = a.pointsDone - a.pointsGot;
+                        const hitsB = b.pointsDone - b.pointsGot;
+                        const compareHits = hitsB - hitsA;
+
+                        return comparePoints || compareHits
+                    }))
                 }
 
                 if (match.points1 == match.points2) {
                     copyResults = copyResults.map((result) => {
                         if (result.teamName == match.team1) {
+                            result.pointsDone = result.pointsDone + match.points1
+                            result.pointsGot = result.pointsGot + match.points2
+
                             result.points = result.points + 1
+                            result.equal = result.equal + 1
                             return (result)
                         }
                         if (result.teamName == match.team2) {
+                            result.pointsDone = result.pointsDone + match.points2
+                            result.pointsGot = result.pointsGot + match.points1
+
                             result.points = result.points + 1
+                            result.equal = result.equal + 1
                             return (result)
                         }
                         return (result)
                     })
-                    setResults(copyResults.sort((a, b) => b.points - a.points))
+                    setResults(copyResults.sort((a, b) => {
+                        const comparePoints = b.points - a.points;
+                        const hitsA = a.pointsDone - a.pointsGot;
+                        const hitsB = b.pointsDone - b.pointsGot;
+                        const compareHits = hitsB - hitsA;
+
+                        return comparePoints || compareHits
+                    }))
                 }
             })
         })
-
-        setTitels(sports.sort(()=> Math.random() - 0.5))
-
     }
 
     return (
         <>
 
             <div style={{ width: "100%", height: "70px" }}></div>
+
             <Grid container spacing={6}>
                 <Grid item xs={4}>
                     <Card>
                         <CardHeader
-                            title={titels[0]}
+                            title={"Feld 1"}
                             sx={{ backgroundColor: "silver" }}
                         />
                         <CardMedia
@@ -148,7 +169,7 @@ export default function Final() {
                 <Grid item xs={4}>
                     <Card>
                         <CardHeader
-                            title={titels[1]}
+                            title={"Feld 2"}
                             sx={{ backgroundColor: "silver" }}
                         />
                         <CardMedia
@@ -173,7 +194,7 @@ export default function Final() {
                 <Grid item xs={4}>
                     <Card>
                         <CardHeader
-                            title={titels[2]}
+                            title={"Feld 3"}
                             sx={{ backgroundColor: "silver" }}
                         />
                         <CardMedia
@@ -195,7 +216,7 @@ export default function Final() {
                     </Card>
                 </Grid>
             </Grid>
-            <Button onClick={() => loadResults()} disabled={!loadable}>Finals Laden</Button>
+            <Button onClick={() => {loadResults()}} disabled={!loadable}>Finals Laden</Button>
         </>
     );
 }

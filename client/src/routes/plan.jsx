@@ -10,6 +10,8 @@ import { useState, useEffect } from "react"
 import { Button } from "@mui/material"
 import { Stack } from "@mui/system"
 
+import { kindOfSports } from '../kindOfSports'
+
 export default function Plan() {
   const [full, setFull] = useState(false)
   const [activ, setActiv] = useState(false)
@@ -64,21 +66,18 @@ export default function Plan() {
 
   return (
     <>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Grid item xs={4}>
-          <Sport sport='Fußball' matches={matches} setMatches={setMatches} setOpen={setOpen} />
+          <Sport sport={kindOfSports[0]} matches={matches} setMatches={setMatches} setOpen={setOpen} />
         </Grid>
 
         <Grid item xs={4}>
-          <Sport sport='Völkerball' matches={matches} setMatches={setMatches} setOpen={setOpen} />
+          <Sport sport={kindOfSports[1]} matches={matches} setMatches={setMatches} setOpen={setOpen} />
         </Grid>
 
         <Grid item xs={4}>
-          <Sport sport='Volleyball' matches={matches} setMatches={setMatches} setOpen={setOpen} />
+          <Sport sport={kindOfSports[2]} matches={matches} setMatches={setMatches} setOpen={setOpen} />
         </Grid>
-
-
-
 
       </Grid>
       <Stack direction="row" spacing={2}>
